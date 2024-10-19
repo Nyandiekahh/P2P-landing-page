@@ -200,7 +200,7 @@ const Footer = () => {
           initial="hidden"
           animate="visible"
         >
-          <FooterTitle>P2Peer</FooterTitle>
+          <FooterTitle>JengaFunds</FooterTitle>
           <p>Revolutionizing peer-to-peer transactions with cutting-edge blockchain technology.</p>
           <SocialIcons>
             {[
@@ -287,15 +287,15 @@ const Footer = () => {
           <ContactInfo>
             <ContactItem>
               <FiMail />
-              <span>support@p2peer.com</span>
+              <span>techtitans@gmail.com</span>
             </ContactItem>
             <ContactItem>
               <FiPhone />
-              <span>+1 (555) 123-4567</span>
+              <span>+ (254) 719-408 098</span>
             </ContactItem>
             <ContactItem>
               <FiMapPin />
-              <span>123 Blockchain Street, Crypto City, 12345</span>
+              <span>P.O BOX 53822 - 00200, Nairobi</span>
             </ContactItem>
           </ContactInfo>
         </FooterColumn>
@@ -305,7 +305,7 @@ const Footer = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <p>&copy; {new Date().getFullYear()} P2Peer. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} JengaFunds. All rights reserved.</p>
       </Copyright>
       <ScrollToTopButton
         onClick={scrollToTop}
