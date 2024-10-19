@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -260,15 +260,15 @@ const Contact = () => {
               <ContactTitle>Contact Information</ContactTitle>
               <ContactDetail>
                 <ContactIcon><FiMail /></ContactIcon>
-                info@p2peer.com
+                techtitans@gmail.com
               </ContactDetail>
               <ContactDetail>
                 <ContactIcon><FiPhone /></ContactIcon>
-                +1 (555) 123-4567
+                +(254) 719 408 098
               </ContactDetail>
               <ContactDetail>
                 <ContactIcon><FiMapPin /></ContactIcon>
-                123 P2P Street, Digital City, 12345
+                P.O BOX 53822 - 0O200, Nairobi
               </ContactDetail>
             </ContactCard>
             <MapContainer

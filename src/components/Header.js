@@ -17,9 +17,8 @@ const HeaderContainer = styled(motion.header)`
   z-index: 1000;
 `;
 
-const Logo = styled(motion.h1)`
-  color: #ffffff;
-  font-size: 1.5rem;
+const Logo = styled(motion.img)`
+  height: 40px;
   cursor: pointer;
 `;
 
@@ -112,12 +111,12 @@ const Header = () => {
       transition={{ duration: 0.3 }}
     >
       <Logo
+        src="/jengafunds-logo.svg"
+        alt="JengaFunds Logo"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-      >
-        P2Peer
-      </Logo>
+      />
       <NavLinks>
         {['Home', 'Features', 'How It Works', 'Pricing', 'Contact'].map((item, index) => (
           <NavLink

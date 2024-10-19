@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Features from './components/Features';
+// import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Pricing from './components/Pricing';
 import Contact from './components/Contact';
@@ -115,7 +115,7 @@ const App = () => {
                 initial="initial"
                 animate="animate"
               >
-                Loading P2Peer...
+                Loading JengaFunds...
               </LoadingText>
             </LoadingScreen>
           )}
@@ -125,7 +125,7 @@ const App = () => {
             <Header />
             <MainContent>
               <Hero />
-              <Features />
+              {/* <Features /> */}
               <HowItWorks />
               <Pricing />
               <Contact />

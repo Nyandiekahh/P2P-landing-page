@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion, useViewportScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Button } from './common/Button';
-import { AnimatedBackground } from './common/Animation';
 import { FiArrowRight, FiPlay, FiX } from 'react-icons/fi';
 
 const HeroSection = styled.section`
@@ -12,7 +10,28 @@ const HeroSection = styled.section`
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+`;
+
+const VideoBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left:.0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+
+  video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+  }
 `;
 
 const ContentWrapper = styled(motion.div)`
@@ -23,6 +42,7 @@ const ContentWrapper = styled(motion.div)`
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  max-width: 800px;
 `;
 
 const fadeIn = keyframes`
@@ -35,44 +55,54 @@ const slideIn = keyframes`
   to { transform: translateY(0); opacity: 1; }
 `;
 
-const glowAnimation = keyframes`
-  0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de; }
-  100% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de; }
-`;
-
 const Title = styled(motion.h1)`
-  font-size: 4.5rem;
+  font-size: 4rem;
   color: #ffffff;
   margin-bottom: 1rem;
-  animation: ${fadeIn} 1s ease-out, ${glowAnimation} 2s ease-in-out infinite alternate;
+  animation: ${fadeIn} 1s ease-out;
   text-transform: uppercase;
+  font-weight: 700;
   letter-spacing: 3px;
 `;
 
 const Subtitle = styled(motion.p)`
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: #e0e0e0;
   margin-bottom: 2rem;
-  animation: ${slideIn} 1s ease-out 0.5s both;
+  animation: ${slideIn} 1s ease-out 0.3s both;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 `;
 
-const CTAButton = styled(Button)`
-  animation: ${fadeIn} 1s ease-out 1s both;
-  margin-right: 1rem;
+const CTAButton = styled(motion.button)`
+  background-color: #ffd700;
+  color: #1e3c72;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  
+  animation: ${fadeIn} 1s ease-out 0.6s both;
+  margin-right: 1rem;
+
   svg {
-    margin-left: 8px;
+    margin-left: 10px;
     transition: transform 0.3s ease;
   }
 
-  &:hover svg {
-    transform: translateX(5px);
+  &:hover {
+    background-color: #ffed4a;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+    svg {
+      transform: translateX(5px);
+    }
   }
 `;
 
@@ -80,21 +110,24 @@ const VideoButton = styled(motion.button)`
   background: transparent;
   border: 2px solid #ffffff;
   color: #ffffff;
-  padding: 10px 20px;
-  font-size: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
+  animation: ${fadeIn} 1s ease-out 0.9s both;
 
   svg {
-    margin-right: 8px;
+    margin-right: 10px;
   }
 
   &:hover {
     background: #ffffff;
     color: #1e3c72;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 `;
 
@@ -249,9 +282,18 @@ const Hero = () => {
     }
   };
 
+  const handleGetStarted = () => {
+    window.location.href = 'http://localhost:3001';
+  };
+
   return (
     <HeroSection>
-      <AnimatedBackground />
+      <VideoBackground>
+        <video autoPlay loop muted>
+          <source src="/Background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </VideoBackground>
       <FloatingShape 
         style={{ top: '10%', left: '10%', width: '100px', height: '100px' }}
         variants={shapeVariants}
@@ -272,7 +314,7 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          Welcome to P2Peer
+          Welcome to JengaFunds
         </Title>
         <Subtitle
           variants={subtitleVariants}
@@ -281,19 +323,22 @@ const Hero = () => {
         >
           Revolutionizing peer-to-peer transactions with cutting-edge blockchain technology
         </Subtitle>
-        <CTAButton
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Get Started <FiArrowRight />
-        </CTAButton>
-        <VideoButton
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setIsVideoModalOpen(true)}
-        >
-          <FiPlay /> Watch Demo
-        </VideoButton>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+          <CTAButton
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleGetStarted}
+          >
+            Get Started <FiArrowRight />
+          </CTAButton>
+          <VideoButton
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsVideoModalOpen(true)}
+          >
+            <FiPlay /> Watch Demo
+          </VideoButton>
+        </div>
       </ContentWrapper>
       <ScrollIndicator style={{ opacity }}>
         <motion.span
