@@ -283,7 +283,7 @@ const Hero = () => {
   };
 
   const handleGetStarted = () => {
-    window.location.href = 'http://localhost:3001';
+    window.location.href = 'http://localhost:5001';
   };
 
   return (
